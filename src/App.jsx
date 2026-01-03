@@ -22,6 +22,7 @@ import interior6 from './assets/Project galery/interior 6.jpg';
 import interior7 from './assets/Project galery/interior 7.jpg';
 import interior8 from './assets/Project galery/interior 8.webp';
 import interior9 from './assets/Project galery/interior 9.jpg';
+import visitImage from './assets/avi-waxman-f9qZuKoZYoY-unsplash.jpg';
 import './App.css';
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
   const [popupTitle, setPopupTitle] = useState('Get in Touch');
   const [currentSlide, setCurrentSlide] = useState(0);
   const [currentGallerySlide, setCurrentGallerySlide] = useState(0);
+  const [visitFormData, setVisitFormData] = useState({ name: '', mobile: '', email: '' });
   const PHONE_NUMBER = '+917400064213';
 
   const heroImages = [heroImage1, heroImage2, heroImage3];
@@ -69,6 +71,21 @@ function App() {
 
   const prevGallerySlide = () => {
     setCurrentGallerySlide((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
+  };
+
+  const handleVisitFormChange = (e) => {
+    const { name, value } = e.target;
+    setVisitFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleVisitFormSubmit = (e) => {
+    e.preventDefault();
+    console.log('Site visit form submitted:', visitFormData);
+    setVisitFormData({ name: '', mobile: '', email: '' });
+    handleInteraction('Thank you for scheduling a site visit!');
   };
 
   // Auto-play slideshow
@@ -375,6 +392,61 @@ function App() {
               <button className="gallery-nav-btn gallery-nav-right" onClick={nextGallerySlide} aria-label="Next gallery image">
                 ›
               </button>
+            </div>
+          </div>
+        </section>
+
+        <section className="schedule-visit-section">
+          <div className="container">
+            <div className="schedule-visit-content">
+              <div className="visit-form-wrapper">
+                <h2 className="visit-form-title">Schedule a Site Visit</h2>
+                <form className="visit-form" onSubmit={handleVisitFormSubmit}>
+                  <div className="form-group">
+                    <label htmlFor="name">Name</label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={visitFormData.name}
+                      onChange={handleVisitFormChange}
+                      placeholder="Enter your full name"
+                      required
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="mobile">Mobile No</label>
+                    <input
+                      type="tel"
+                      id="mobile"
+                      name="mobile"
+                      value={visitFormData.mobile}
+                      onChange={handleVisitFormChange}
+                      placeholder="Enter your mobile number"
+                      pattern="[0-9+\-\s]{10,}"
+                      required
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="email">Email</label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={visitFormData.email}
+                      onChange={handleVisitFormChange}
+                      placeholder="Enter your email address"
+                      required
+                    />
+                  </div>
+                  <button type="submit" className="btn-schedule-visit">
+                    Schedule Visit
+                  </button>
+                </form>
+              </div>
+              <div className="visit-image-wrapper">
+                <img src={visitImage} alt="Schedule a site visit" className="visit-image" />
+              </div>
             </div>
           </div>
         </section>
