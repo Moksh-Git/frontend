@@ -438,55 +438,157 @@
   color: white;
 }
 
-/* Features Section */
-.features {
-  padding: 4rem 0;
-  background: white;
+/* About Section */
+.about-section {
+  padding: 5rem 0;
+  background: #f5f5f5;
 }
 
-.features h2 {
-  text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 3rem;
-  color: #333;
-}
-
-.feature-grid {
+.about-content {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
 }
 
-.feature-card {
-  background: #f8f9fa;
-  padding: 2rem;
-  border-radius: 12px;
-  text-align: center;
+.about-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.about-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #556b2f;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.about-description {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #333;
+  margin: 0;
+}
+
+.read-more-link {
+  color: #0066cc;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 0.3s;
+  width: fit-content;
+}
+
+.read-more-link:hover {
+  color: #0052a3;
+  text-decoration: underline;
+}
+
+.chevron {
+  font-size: 0.8rem;
+  display: inline-block;
+}
+
+.btn-express-about {
+  padding: 1rem 2rem;
+  background: linear-gradient(to bottom, #556b2f 0%, #6b8e23 100%);
+  border: none;
+  border-top: 2px solid #ff8c00;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: white;
   cursor: pointer;
   transition: all 0.3s;
-  border: 2px solid transparent;
+  font-family: inherit;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  width: fit-content;
+  margin-top: 0.5rem;
 }
 
-.feature-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  border-color: #667eea;
+.btn-express-about:hover {
+  background: linear-gradient(to bottom, #6b8e23 0%, #556b2f 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(85, 107, 47, 0.4);
 }
 
-.feature-icon {
-  font-size: 3rem;
+.about-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.about-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Features Section */
+.features {
+  padding: 5rem 0;
+  background: #f5f5f5;
+}
+
+.highlights-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #556b2f;
   margin-bottom: 1rem;
+  position: relative;
+  padding-bottom: 1rem;
 }
 
-.feature-card h3 {
-  font-size: 1.25rem;
-  margin-bottom: 0.5rem;
+.highlights-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: #556b2f;
+}
+
+.highlights-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  max-width: 1000px;
+  margin: 3rem auto 0;
+}
+
+.highlights-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.highlight-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
   color: #333;
 }
 
-.feature-card p {
-  color: #666;
-  line-height: 1.6;
+.checkmark {
+  color: #000;
+  font-weight: bold;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
 }
 
 /* CTA Section */
@@ -768,6 +870,42 @@
     padding: 3rem 0;
   }
 
+  .about-section {
+    padding: 3rem 0;
+  }
+
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .about-title {
+    font-size: 1.75rem;
+  }
+
+  .about-description {
+    font-size: 1rem;
+  }
+
+  .about-image {
+    order: -1;
+    height: 300px;
+  }
+
+  .highlights-title {
+    font-size: 1.75rem;
+  }
+
+  .highlights-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .highlight-item {
+    font-size: 1rem;
+  }
+
   .features h2,
   .cta-section h2,
   .quick-actions h2 {
@@ -849,6 +987,27 @@
 
   .hero-price {
     font-size: 1.25rem;
+  }
+
+  .about-title {
+    font-size: 1.5rem;
+  }
+
+  .about-description {
+    font-size: 0.95rem;
+  }
+
+  .btn-express-about {
+    font-size: 1rem;
+    padding: 0.875rem 1.5rem;
+  }
+
+  .highlights-title {
+    font-size: 1.5rem;
+  }
+
+  .highlight-item {
+    font-size: 0.95rem;
   }
 
   .features h2,

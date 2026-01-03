@@ -4,6 +4,7 @@ import StaticForm from './components/StaticForm';
 import heroImage1 from './assets/francesca-tosolini-tHkJAMcO3QE-unsplash.jpg';
 import heroImage2 from './assets/jason-dent-w3eFhqXjkZE-unsplash.jpg';
 import heroImage3 from './assets/dillon-kydd-2keCPb73aQY-unsplash.jpg';
+import aboutImage from './assets/brian-babb-XbwHrt87mQ0-unsplash.jpg';
 import './App.css';
 
 function App() {
@@ -128,29 +129,67 @@ function App() {
           </div>
         </section>
 
+        <section className="about-section">
+          <div className="container">
+            <div className="about-content">
+              <div className="about-text">
+                <h2 className="about-title">About New Launch Kharghar</h2>
+                <p className="about-description">
+                  This new residential launch at Kharghar–Belpada introduces thoughtfully planned 2, 3 & 4 BHK homes in one of Navi Mumbai's fastest-evolving corridors. Designed to offer a balance of space, comfort, and modern aesthetics, the residences are set within a green, well-organised environment that feels calm without cutting you off from the city. Landscaped open areas and eco-sensitive planning add to the sense of everyday ease, making it a practical choice for contemporary urban living.
+                </p>
+                <a href="#read-more" className="read-more-link" onClick={(e) => { e.preventDefault(); handleInteraction('Read More'); }}>
+                  Read more <span className="chevron">▼</span>
+                </a>
+                <button className="btn-express-about" onClick={() => handleInteraction('Express Your Interest')}>
+                  Express Your Interest
+                </button>
+              </div>
+              <div className="about-image">
+                <img src={aboutImage} alt="Modern apartment interior and balcony" />
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className="features">
           <div className="container">
-            <h2>Project Highlights</h2>
-            <div className="feature-grid">
-              <div className="feature-card" onClick={() => handleInteraction('Learn More - Spacious Homes')}>
-                <div className="feature-icon">🏠</div>
-                <h3>Spacious Homes</h3>
-                <p>2, 3 & 4 BHK homes with smart layouts</p>
+            <h2 className="highlights-title">Project Highlights</h2>
+            <div className="highlights-grid">
+              <div className="highlights-column">
+                <div className="highlight-item">
+                  <span className="checkmark">✓</span>
+                  <span>Spacious 2, 3 & 4 BHK homes with smart layouts</span>
+                </div>
+                <div className="highlight-item">
+                  <span className="checkmark">✓</span>
+                  <span>24/7 security with advanced surveillance systems</span>
+                </div>
+                <div className="highlight-item">
+                  <span className="checkmark">✓</span>
+                  <span>Close to reputed schools and healthcare facilities</span>
+                </div>
+                <div className="highlight-item">
+                  <span className="checkmark">✓</span>
+                  <span>Prime, well-connected location in Kharghar, Navi Mumbai</span>
+                </div>
               </div>
-              <div className="feature-card" onClick={() => handleInteraction('Learn More - Modern Amenities')}>
-                <div className="feature-icon">🏊</div>
-                <h3>Modern Amenities</h3>
-                <p>Clubhouse, fitness zones, and leisure spaces</p>
-              </div>
-              <div className="feature-card" onClick={() => handleInteraction('Learn More - Security')}>
-                <div className="feature-icon">🔒</div>
-                <h3>24/7 Security</h3>
-                <p>Advanced surveillance systems</p>
-              </div>
-              <div className="feature-card" onClick={() => handleInteraction('Learn More - Connectivity')}>
-                <div className="feature-icon">🚇</div>
-                <h3>Great Connectivity</h3>
-                <p>Close to metro, railway, and highways</p>
+              <div className="highlights-column">
+                <div className="highlight-item">
+                  <span className="checkmark">✓</span>
+                  <span>Modern clubhouse and lifestyle-focused amenities</span>
+                </div>
+                <div className="highlight-item">
+                  <span className="checkmark">✓</span>
+                  <span>Strong road, rail, and upcoming metro connectivity</span>
+                </div>
+                <div className="highlight-item">
+                  <span className="checkmark">✓</span>
+                  <span>Developed by a trusted Grade-A real estate brand</span>
+                </div>
+                <div className="highlight-item">
+                  <span className="checkmark">✓</span>
+                  <span>Landscaped open spaces with eco-sensitive planning</span>
+                </div>
               </div>
             </div>
           </div>
