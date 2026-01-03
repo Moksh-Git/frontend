@@ -13,15 +13,26 @@ import securityImage from './assets/aminities/24 x 7 security.jpg';
 import kidsPlayAreaImage from './assets/aminities/kids play area.jpg';
 import landscapedGardensImage from './assets/aminities/landscape garden.jpg';
 import gymnasiumImage from './assets/aminities/gymnasium.jpg';
+import interior1 from './assets/Project galery/interior 1.png';
+import interior2 from './assets/Project galery/interior 2.jpg';
+import interior3 from './assets/Project galery/interior 3.webp';
+import interior4 from './assets/Project galery/interior 4.webp';
+import interior5 from './assets/Project galery/interior 5.png';
+import interior6 from './assets/Project galery/interior 6.jpg';
+import interior7 from './assets/Project galery/interior 7.jpg';
+import interior8 from './assets/Project galery/interior 8.webp';
+import interior9 from './assets/Project galery/interior 9.jpg';
 import './App.css';
 
 function App() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [popupTitle, setPopupTitle] = useState('Get in Touch');
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentGallerySlide, setCurrentGallerySlide] = useState(0);
   const PHONE_NUMBER = '+917400064213';
 
   const heroImages = [heroImage1, heroImage2, heroImage3];
+  const galleryImages = [interior1, interior2, interior3, interior4, interior5, interior6, interior7, interior8, interior9];
 
   // Auto-open popup on page load/refresh
   useEffect(() => {
@@ -50,6 +61,14 @@ function App() {
 
   const prevSlide = () => {
     setCurrentSlide((prev) => (prev - 1 + heroImages.length) % heroImages.length);
+  };
+
+  const nextGallerySlide = () => {
+    setCurrentGallerySlide((prev) => (prev + 1) % galleryImages.length);
+  };
+
+  const prevGallerySlide = () => {
+    setCurrentGallerySlide((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
   };
 
   // Auto-play slideshow
@@ -332,6 +351,29 @@ function App() {
             <div className="amenities-cta">
               <button className="btn-express-amenities" onClick={() => handleInteraction('Express Your Interest')}>
                 Express Your Interest
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section className="project-gallery-section">
+          <div className="container">
+            <h2 className="gallery-title">Project Gallery</h2>
+            <div className="gallery-slideshow-wrapper">
+              <div className="gallery-slideshow">
+                {galleryImages.map((image, index) => (
+                  <div
+                    key={index}
+                    className={`gallery-slide ${index === currentGallerySlide ? 'active' : ''}`}
+                    style={{ backgroundImage: `url(${image})` }}
+                  ></div>
+                ))}
+              </div>
+              <button className="gallery-nav-btn gallery-nav-left" onClick={prevGallerySlide} aria-label="Previous gallery image">
+                ‹
+              </button>
+              <button className="gallery-nav-btn gallery-nav-right" onClick={nextGallerySlide} aria-label="Next gallery image">
+                ›
               </button>
             </div>
           </div>
