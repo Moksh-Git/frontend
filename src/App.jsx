@@ -451,44 +451,9 @@ function App() {
           </div>
         </section>
 
-        <section className="cta-section">
-          <div className="container">
-            <h2>Ready to Make This Your Home?</h2>
-            <p>Get in touch with us to learn more about our exclusive offers</p>
-            <div className="cta-buttons">
-              <button className="btn btn-primary" onClick={() => handleInteraction('Request Brochure')}>
-                Request Brochure
-              </button>
-              <button className="btn btn-outline" onClick={() => handleInteraction('Express Interest')}>
-                Express Interest
-              </button>
-            </div>
-      </div>
-        </section>
+        
 
-        <section className="quick-actions">
-          <div className="container">
-            <h2>Quick Actions</h2>
-            <div className="action-grid">
-              <button className="action-card" onClick={() => handleInteraction('Instant Call Back')}>
-                <span className="action-icon">📞</span>
-                <span>Instant Call Back</span>
-              </button>
-              <button className="action-card" onClick={() => handleInteraction('Free Site Visit')}>
-                <span className="action-icon">🏢</span>
-                <span>Free Site Visit</span>
-              </button>
-              <button className="action-card" onClick={() => handleInteraction('Best Price')}>
-                <span className="action-icon">💰</span>
-                <span>Best Price</span>
-              </button>
-              <button className="action-card" onClick={() => handleInteraction('Virtual Tour')}>
-                <span className="action-icon">🎥</span>
-                <span>360° Virtual Tour</span>
-        </button>
-            </div>
-          </div>
-        </section>
+        
       </main>
 
       <footer className="footer">

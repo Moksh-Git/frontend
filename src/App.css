@@ -351,14 +351,17 @@
 }
 
 .pricing-section {
-  padding: 1.5rem;
+  /* padding: 1.5em; */
   background: white;
+  padding: 2.5rem 0;
+  background: #f5f5f5;
 }
 
 .apartment-types {
   font-size: 1rem;
   color: #333;
-  margin-bottom: 0.75rem;
+  /* margin-bottom: 0.75em; */
+  margin-left: 4.3rem;
   font-weight: 500;
   line-height: 1.4;
 }
@@ -367,7 +370,8 @@
   font-size: 1.75rem;
   font-weight: 700;
   color: #90ee90;
-  margin-bottom: 0;
+  margin-left: 4rem;
+  /* margin-bottom: 0; */
   line-height: 1.2;
 }
 
@@ -591,11 +595,7 @@
   margin-top: 0.1rem;
 }
 
-/* Pricing Section */
-.pricing-section {
-  padding: 5rem 0;
-  background: #f5f5f5;
-}
+
 
 .pricing-title {
   text-align: center;
@@ -1343,9 +1343,7 @@
     margin-bottom: 0.625rem;
   }
 
-  .pricing-section {
-    padding: 1.25rem;
-  }
+ 
 
   .apartment-types {
     font-size: 0.9rem;
@@ -1402,9 +1400,7 @@
     font-size: 1rem;
   }
 
-  .pricing-section {
-    padding: 3rem 0;
-  }
+  
 
   .pricing-title {
     font-size: 1.75rem;
