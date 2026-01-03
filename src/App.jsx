@@ -1,13 +1,18 @@
 import { useState, useEffect } from 'react';
 import ContactPopup from './components/ContactPopup';
 import StaticForm from './components/StaticForm';
-import heroImage from './assets/francesca-tosolini-tHkJAMcO3QE-unsplash.jpg';
+import heroImage1 from './assets/francesca-tosolini-tHkJAMcO3QE-unsplash.jpg';
+import heroImage2 from './assets/jason-dent-w3eFhqXjkZE-unsplash.jpg';
+import heroImage3 from './assets/dillon-kydd-2keCPb73aQY-unsplash.jpg';
 import './App.css';
 
 function App() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [popupTitle, setPopupTitle] = useState('Get in Touch');
+  const [currentSlide, setCurrentSlide] = useState(0);
   const PHONE_NUMBER = '+917400064213';
+
+  const heroImages = [heroImage1, heroImage2, heroImage3];
 
   // Auto-open popup on page load/refresh
   useEffect(() => {
@@ -30,6 +35,23 @@ function App() {
     setIsPopupOpen(true);
   };
 
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % heroImages.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + heroImages.length) % heroImages.length);
+  };
+
+  // Auto-play slideshow
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroImages.length);
+    }, 5000); // Change slide every 5 seconds
+
+    return () => clearInterval(interval);
+  }, [heroImages.length]);
+
 
   return (
     <div className="app">
@@ -51,9 +73,21 @@ function App() {
 
       <main>
         <section className="hero">
-          <div className="hero-background" style={{ backgroundImage: `url(${heroImage})` }}>
-            <div className="hero-overlay"></div>
+          <div className="hero-slideshow">
+            {heroImages.map((image, index) => (
+              <div
+                key={index}
+                className={`hero-slide ${index === currentSlide ? 'active' : ''}`}
+                style={{ backgroundImage: `url(${image})` }}
+              ></div>
+            ))}
           </div>
+          <button className="hero-nav-btn hero-nav-left" onClick={prevSlide} aria-label="Previous slide">
+            ‹
+          </button>
+          <button className="hero-nav-btn hero-nav-right" onClick={nextSlide} aria-label="Next slide">
+            ›
+          </button>
           <div className="hero-content">
             <div className="hero-info-panel">
               <div className="coming-soon-banner">Coming Soon</div>
