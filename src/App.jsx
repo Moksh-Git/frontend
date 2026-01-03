@@ -5,6 +5,14 @@ import heroImage1 from './assets/francesca-tosolini-tHkJAMcO3QE-unsplash.jpg';
 import heroImage2 from './assets/jason-dent-w3eFhqXjkZE-unsplash.jpg';
 import heroImage3 from './assets/dillon-kydd-2keCPb73aQY-unsplash.jpg';
 import aboutImage from './assets/brian-babb-XbwHrt87mQ0-unsplash.jpg';
+import masterPlanImage from './assets/plans/MasterPlan.webp';
+import unitPlanImage from './assets/plans/UnitPlan.webp';
+import swimmingPoolImage from './assets/aminities/swiming pool.jpg';
+import clubhouseImage from './assets/aminities/club house.jpg';
+import securityImage from './assets/aminities/24 x 7 security.jpg';
+import kidsPlayAreaImage from './assets/aminities/kids play area.jpg';
+import landscapedGardensImage from './assets/aminities/landscape garden.jpg';
+import gymnasiumImage from './assets/aminities/gymnasium.jpg';
 import './App.css';
 
 function App() {
@@ -195,6 +203,140 @@ function App() {
           </div>
         </section>
 
+        <section className="pricing-section">
+          <div className="container">
+            <h2 className="pricing-title">Tentative Area & Pricing</h2>
+            <div className="pricing-table-wrapper">
+              <table className="pricing-table">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Area</th>
+                    <th>Price ( Onwards )</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>2 BHK</td>
+                    <td>On Request</td>
+                    <td>₹ 2.20 Cr*</td>
+                    <td>
+                      <button className="btn-costing-details" onClick={() => handleInteraction('Complete Costing Details - 2 BHK')}>
+                        Complete Costing Details
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>3 BHK</td>
+                    <td>On Request</td>
+                    <td>₹ On Request</td>
+                    <td>
+                      <button className="btn-costing-details" onClick={() => handleInteraction('Complete Costing Details - 3 BHK')}>
+                        Complete Costing Details
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>4 BHK</td>
+                    <td>On Request</td>
+                    <td>₹ On Request</td>
+                    <td>
+                      <button className="btn-costing-details" onClick={() => handleInteraction('Complete Costing Details - 4 BHK')}>
+                        Complete Costing Details
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section className="layout-section">
+          <div className="container">
+            <div className="layout-grid">
+              <div className="layout-panel">
+                <h3 className="layout-title">
+                  Tentative <span className="layout-underline">Master Plan</span> Layout
+                </h3>
+                <div className="layout-image-wrapper">
+                  <img src={masterPlanImage} alt="Master Plan Layout" className="layout-image" />
+                  <button className="btn-request-layout" onClick={() => handleInteraction('Request Master Plan Layout')}>
+                    Request Master Plan Layout
+                  </button>
+                </div>
+              </div>
+              <div className="layout-panel">
+                <h3 className="layout-title">
+                  Tentative <span className="layout-underline">Unit Plan</span> Layout
+                </h3>
+                <div className="layout-image-wrapper">
+                  <img src={unitPlanImage} alt="Unit Plan Layout" className="layout-image" />
+                  <button className="btn-request-layout" onClick={() => handleInteraction('Request Unit Plan Layout')}>
+                    Request Unit Plan Layout
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="amenities-section">
+          <div className="container">
+            <h2 className="amenities-title">Proposed Amenities</h2>
+            <div className="amenities-grid">
+              <div className="amenity-item">
+                <div className="amenity-image-wrapper">
+                  <img src={swimmingPoolImage} alt="Swimming Pool" className="amenity-image" />
+                  <div className="amenity-overlay"></div>
+                  <div className="amenity-label">SWIMMING POOL</div>
+                </div>
+              </div>
+              <div className="amenity-item">
+                <div className="amenity-image-wrapper">
+                  <img src={clubhouseImage} alt="Clubhouse" className="amenity-image" />
+                  <div className="amenity-overlay"></div>
+                  <div className="amenity-label">CLUBHOUSE</div>
+                </div>
+              </div>
+              <div className="amenity-item">
+                <div className="amenity-image-wrapper">
+                  <img src={securityImage} alt="24 7 Security" className="amenity-image" />
+                  <div className="amenity-overlay"></div>
+                  <div className="amenity-label">24 7 SECURITY</div>
+                </div>
+              </div>
+              <div className="amenity-item">
+                <div className="amenity-image-wrapper">
+                  <img src={kidsPlayAreaImage} alt="Kids Play Area" className="amenity-image" />
+                  <div className="amenity-overlay"></div>
+                  <div className="amenity-label">KIDS PLAY AREA</div>
+                </div>
+              </div>
+              <div className="amenity-item">
+                <div className="amenity-image-wrapper">
+                  <img src={landscapedGardensImage} alt="Landscaped Gardens" className="amenity-image" />
+                  <div className="amenity-overlay"></div>
+                  <div className="amenity-label">LANDSCAPED GARDENS</div>
+                </div>
+              </div>
+              <div className="amenity-item">
+                <div className="amenity-image-wrapper">
+                  <img src={gymnasiumImage} alt="Gymnasium" className="amenity-image" />
+                  <div className="amenity-overlay"></div>
+                  <div className="amenity-label">GYMNASIUM</div>
+                </div>
+              </div>
+            </div>
+            <div className="amenities-cta">
+              <button className="btn-express-amenities" onClick={() => handleInteraction('Express Your Interest')}>
+                Express Your Interest
+              </button>
+            </div>
+          </div>
+        </section>
+
         <section className="cta-section">
           <div className="container">
             <h2>Ready to Make This Your Home?</h2>
@@ -207,7 +349,7 @@ function App() {
                 Express Interest
               </button>
             </div>
-          </div>
+      </div>
         </section>
 
         <section className="quick-actions">
@@ -229,7 +371,7 @@ function App() {
               <button className="action-card" onClick={() => handleInteraction('Virtual Tour')}>
                 <span className="action-icon">🎥</span>
                 <span>360° Virtual Tour</span>
-              </button>
+        </button>
             </div>
           </div>
         </section>
@@ -252,7 +394,7 @@ function App() {
         onClose={() => setIsPopupOpen(false)}
         title={popupTitle}
       />
-    </div>
+      </div>
   );
 }
 
