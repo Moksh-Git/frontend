@@ -1087,6 +1087,90 @@
   display: block;
 }
 
+/* Location Section */
+.location-section {
+  padding: 5rem 0;
+  background: white;
+}
+
+.location-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #556b2f;
+  margin-bottom: 3rem;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.location-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: #556b2f;
+}
+
+.map-wrapper {
+  width: 100%;
+  margin-bottom: 3rem;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.map-wrapper iframe {
+  display: block;
+  width: 100%;
+}
+
+.location-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: #f9f9f9;
+  border-radius: 12px;
+}
+
+.location-details,
+.location-contact {
+  padding: 1.5rem;
+}
+
+.location-details h3,
+.location-contact h3 {
+  font-size: 1.4rem;
+  color: #556b2f;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.location-details p,
+.location-contact p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 0.5rem;
+}
+
+.location-contact a {
+  color: #556b2f;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.location-contact a:hover {
+  color: #6b8e23;
+  text-decoration: underline;
+}
+
 /* CTA Section */
 .cta-section {
   padding: 4rem 0;
@@ -1474,6 +1558,38 @@
     font-size: 1rem;
   }
 
+  .location-section {
+    padding: 3rem 0;
+  }
+
+  .location-title {
+    font-size: 1.75rem;
+  }
+
+  .map-wrapper {
+    margin-bottom: 2rem;
+  }
+
+  .map-wrapper iframe {
+    height: 400px !important;
+  }
+
+  .location-info {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 1.5rem;
+  }
+
+  .location-details,
+  .location-contact {
+    padding: 1rem;
+  }
+
+  .location-details h3,
+  .location-contact h3 {
+    font-size: 1.3rem;
+  }
+
   .schedule-visit-section {
     padding: 3rem 0;
   }
@@ -1726,6 +1842,35 @@
 
   .visit-image-wrapper {
     height: 280px;
+  }
+
+  .location-section {
+    padding: 2rem 0;
+  }
+
+  .location-title {
+    font-size: 1.5rem;
+  }
+
+  .map-wrapper iframe {
+    height: 300px !important;
+  }
+
+  .location-info {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1.25rem;
+  }
+
+  .location-details h3,
+  .location-contact h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .location-details p,
+  .location-contact p {
+    font-size: 0.95rem;
   }
 
   .features h2,
