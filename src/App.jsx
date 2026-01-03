@@ -115,6 +115,13 @@ function App() {
     return () => clearInterval(interval);
   }, [heroImages.length]);
 
+  const handleSectionNavigation = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
     <div className="app">
       <header className="header">
@@ -125,7 +132,7 @@ function App() {
               href="#highlights"
               onClick={(e) => {
                 e.preventDefault();
-                handleInteraction("View Highlights");
+                handleSectionNavigation("highlights");
               }}
             >
               Highlights
@@ -134,7 +141,7 @@ function App() {
               href="#pricing"
               onClick={(e) => {
                 e.preventDefault();
-                handleInteraction("View Pricing");
+                handleSectionNavigation("pricing");
               }}
             >
               Pricing
@@ -143,7 +150,7 @@ function App() {
               href="#amenities"
               onClick={(e) => {
                 e.preventDefault();
-                handleInteraction("View Amenities");
+                handleSectionNavigation("amenities");
               }}
             >
               Amenities
@@ -152,7 +159,7 @@ function App() {
               href="#location"
               onClick={(e) => {
                 e.preventDefault();
-                handleInteraction("View Location");
+                handleSectionNavigation("location");
               }}
             >
               Location
@@ -285,7 +292,7 @@ function App() {
           </div>
         </section>
 
-        <section className="features">
+        <section className="features" id="highlights">
           <div className="container">
             <h2 className="highlights-title">Project Highlights</h2>
             <div className="highlights-grid">
@@ -337,7 +344,7 @@ function App() {
           </div>
         </section>
 
-        <section className="pricing-section">
+        <section className="pricing-section" id="pricing">
           <div className="container">
             <h2 className="pricing-title">Tentative Area & Pricing</h2>
             <div className="pricing-table-wrapper">
@@ -451,7 +458,7 @@ function App() {
           </div>
         </section>
 
-        <section className="amenities-section">
+        <section className="amenities-section" id="amenities">
           <div className="container">
             <h2 className="amenities-title">Proposed Amenities</h2>
             <div className="amenities-grid">
@@ -625,7 +632,7 @@ function App() {
           </div>
         </section>
 
-        <section className="location-section">
+        <section className="location-section" id="location">
           <div className="container">
             <h2 className="location-title">Our Location</h2>
             <div className="map-wrapper">
