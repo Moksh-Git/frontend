@@ -103,26 +103,89 @@ function App() {
 
   const handleVisitFormSubmit = async (e) => {
     e.preventDefault();
-    // console.log("Site visit form submitted:", visitFormData);
-    // setVisitFormData({ name: "", mobile: "", email: "" });
-    // handleInteraction("Thank you for scheduling a site visit!");
+    console.log('=== FORM SUBMISSION STARTED ===');
+    console.log('Step 1: Form data before submission:', visitFormData);
+    
+    // Validate form data
+    if (!visitFormData.name || !visitFormData.mobile || !visitFormData.email) {
+      console.error('❌ Form validation failed: Missing required fields');
+      setMessage('❌ Please fill all fields');
+      return;
+    }
+
+    // Validate mobile format
+    const mobilePattern = /^[6-9][0-9]{9}$/;
+    if (!mobilePattern.test(visitFormData.mobile)) {
+      console.error('❌ Mobile validation failed:', visitFormData.mobile);
+      setMessage('❌ Please enter valid 10-digit mobile number starting with 6-9');
+      return;
+    }
+
+    // Validate email format
+    const emailPattern = /^\S+@\S+\.\S+$/;
+    if (!emailPattern.test(visitFormData.email)) {
+      console.error('❌ Email validation failed:', visitFormData.email);
+      setMessage('❌ Please enter valid email address');
+      return;
+    }
 
     try {
-      await axios.post(
+      console.log('Step 2: All validations passed');
+      console.log('Step 3: Sending request to: http://localhost:5000/api/users/create');
+      console.log('Step 4: Payload:', JSON.stringify(visitFormData));
+      
+      const response = await axios.post(
         'http://localhost:5000/api/users/create',
-        visitFormData
+        visitFormData,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
       );
 
-      setMessage('✅ Data saved successfully');
+      console.log('✅ Step 5: Response received successfully');
+      console.log('✅ Response status:', response.status);
+      console.log('✅ Response data:', response.data);
+      
+      const successMsg = '✅ Data saved successfully! Your site visit has been scheduled.';
+      setMessage(successMsg);
       setVisitFormData({ name: '', mobile: '', email: '' });
-      console.log(message)
+      
+      // Show popup confirmation
+      handleInteraction('Thank you! Your site visit has been scheduled.');
+      
+      // Clear message after 5 seconds
+      setTimeout(() => setMessage(''), 5000);
+      
+      console.log('✅ FORM SUBMISSION COMPLETED SUCCESSFULLY');
+      
     } catch (error) {
-      setMessage(
-        error.response?.data?.message || '❌ Something went wrong'
-      );
-      console.log(message)
+      console.error('=== ERROR OCCURRED ===');
+      console.error('❌ Error object:', error);
+      console.error('❌ Error message:', error.message);
+      console.error('❌ Error status:', error.response?.status);
+      console.error('❌ Error response data:', error.response?.data);
+      console.error('❌ Error config:', error.config);
+      
+      let errorMsg = '❌ Something went wrong';
+      
+      if (error.response?.data?.message) {
+        errorMsg = `❌ ${error.response.data.message}`;
+      } else if (error.response?.status === 0) {
+        errorMsg = '❌ Cannot connect to server. Is backend running on port 5000?';
+      } else if (error.message === 'Network Error') {
+        errorMsg = '❌ Network Error. Check if backend is running.';
+      } else if (error.message) {
+        errorMsg = `❌ ${error.message}`;
+      }
+      
+      console.log('Setting error message:', errorMsg);
+      setMessage(errorMsg);
+      
+      // Clear error message after 7 seconds
+      setTimeout(() => setMessage(''), 7000);
     }
-    
   };
 
   // Auto-play slideshow
@@ -597,6 +660,7 @@ function App() {
             <div className="schedule-visit-content">
               <div className="visit-form-wrapper">
                 <h2 className="visit-form-title">Schedule a Site Visit</h2>
+                {message && <div className="form-message">{message}</div>}
                 <form className="visit-form" onSubmit={handleVisitFormSubmit}>
                   <div className="form-group">
                     <label htmlFor="name">Name</label>
@@ -618,8 +682,10 @@ function App() {
                       name="mobile"
                       value={visitFormData.mobile}
                       onChange={handleVisitFormChange}
-                      placeholder="Enter your mobile number"
-                      pattern="[0-9+\-\s]{10,}"
+                      placeholder="Enter your 10-digit mobile number"
+                      pattern="[6-9][0-9]{9}"
+                      title="Please enter a valid 10-digit Indian mobile number starting with 6-9"
+                      maxLength="10"
                       required
                     />
                   </div>
