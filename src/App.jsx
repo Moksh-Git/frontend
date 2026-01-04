@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import axios from 'axios';
 import ContactPopup from "./components/ContactPopup";
 import StaticForm from "./components/StaticForm";
 import heroImage1 from "./assets/francesca-tosolini-tHkJAMcO3QE-unsplash.jpg";
@@ -30,6 +31,7 @@ function App() {
   const [popupTitle, setPopupTitle] = useState("Get in Touch");
   const [currentSlide, setCurrentSlide] = useState(0);
   const [currentGallerySlide, setCurrentGallerySlide] = useState(0);
+  const [message, setMessage] = useState('');
   const [visitFormData, setVisitFormData] = useState({
     name: "",
     mobile: "",
@@ -99,11 +101,28 @@ function App() {
     }));
   };
 
-  const handleVisitFormSubmit = (e) => {
+  const handleVisitFormSubmit = async (e) => {
     e.preventDefault();
-    console.log("Site visit form submitted:", visitFormData);
-    setVisitFormData({ name: "", mobile: "", email: "" });
-    handleInteraction("Thank you for scheduling a site visit!");
+    // console.log("Site visit form submitted:", visitFormData);
+    // setVisitFormData({ name: "", mobile: "", email: "" });
+    // handleInteraction("Thank you for scheduling a site visit!");
+
+    try {
+      await axios.post(
+        'http://localhost:5000/api/users/create',
+        visitFormData
+      );
+
+      setMessage('✅ Data saved successfully');
+      setVisitFormData({ name: '', mobile: '', email: '' });
+      console.log(message)
+    } catch (error) {
+      setMessage(
+        error.response?.data?.message || '❌ Something went wrong'
+      );
+      console.log(message)
+    }
+    
   };
 
   // Auto-play slideshow
