@@ -5,11 +5,12 @@ import "./ContactPopup.css";
 const ContactPopup = ({ isOpen, onClose, title = "Get in Touch" }) => {
   const [formData, setFormData] = useState({
     name: "",
-    phone: "",
+    mobile: "",
     email: "",
   });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,10 +34,10 @@ const ContactPopup = ({ isOpen, onClose, title = "Get in Touch" }) => {
       newErrors.name = "Name field is required";
     }
 
-    if (!formData.phone.trim()) {
-      newErrors.phone = "Mobile field is required";
-    } else if (!/^[0-9]{10}$/.test(formData.phone.replace(/\D/g, ""))) {
-      newErrors.phone = "Please enter a valid 10-digit mobile number";
+    if (!formData.mobile.trim()) {
+      newErrors.mobile = "Mobile field is required";
+    } else if (!/^[6-9][0-9]{9}$/.test(formData.mobile.replace(/\D/g, ""))) {
+      newErrors.mobile = "Please enter a valid 10-digit Indian mobile number starting with 6-9";
     }
 
     if (!formData.email.trim()) {
@@ -56,28 +57,45 @@ const ContactPopup = ({ isOpen, onClose, title = "Get in Touch" }) => {
       return;
     }
 
-    try {
-      await axios.post("http://localhost:5000/api/users/create", formData, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      setFormData({ name: "", mobile: "", email: "" });
-      console.log("✅ FORM SUBMISSION COMPLETED SUCCESSFULLY");
-    } catch (error) {
-      console.log("Setting error message:" + error);
-    }
-
     setIsSubmitting(true);
+    console.log("=== CONTACT POPUP SUBMISSION STARTED ===");
+    console.log("Form data:", formData);
 
-    // Simulate API call
-    setTimeout(() => {
-      console.log("Form submitted:", formData);
-      alert("Thank you! We will contact you soon.");
-      setFormData({ name: "", phone: "", email: "" });
+    try {
+      console.log("Sending request to: http://localhost:5000/api/users/create");
+      const response = await axios.post(
+        "http://localhost:5000/api/users/create",
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      console.log("✅ Response received:", response.data);
+      setSuccessMessage("✅ Thank you! We will contact you soon.");
+      setFormData({ name: "", mobile: "", email: "" });
+      setErrors({});
+      console.log("✅ FORM SUBMISSION COMPLETED SUCCESSFULLY");
+
+      // Close popup after 2 seconds
+      setTimeout(() => {
+        onClose();
+        setSuccessMessage("");
+      }, 2000);
+    } catch (error) {
+      console.error("❌ ERROR in form submission:");
+      console.error("Error message:", error.message);
+      console.error("Error response:", error.response?.data);
+      console.error("Error status:", error.response?.status);
+
+      const errorMsg =
+        error.response?.data?.message || error.message || "Something went wrong";
+      setSuccessMessage(`❌ Error: ${errorMsg}`);
+    } finally {
       setIsSubmitting(false);
-      onClose();
-    }, 1000);
+    }
   };
 
   if (!isOpen) return null;
@@ -93,6 +111,16 @@ const ContactPopup = ({ isOpen, onClose, title = "Get in Touch" }) => {
           <h2>{title}</h2>
           <p>Fill in your details and we'll get back to you</p>
         </div>
+
+        {successMessage && (
+          <div
+            className={`form-message ${
+              successMessage.includes("❌") ? "error" : "success"
+            }`}
+          >
+            {successMessage}
+          </div>
+        )}
 
         <form onSubmit={handleSubmit} className="popup-form">
           <div className="form-group">
@@ -112,18 +140,20 @@ const ContactPopup = ({ isOpen, onClose, title = "Get in Touch" }) => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="phone">Mobile Number *</label>
+            <label htmlFor="mobile">Mobile Number *</label>
             <input
               type="tel"
-              id="phone"
-              name="phone"
-              value={formData.phone}
+              id="mobile"
+              name="mobile"
+              value={formData.mobile}
               onChange={handleChange}
-              placeholder="Enter your mobile number"
-              className={errors.phone ? "error" : ""}
+              placeholder="Enter 10-digit mobile number"
+              pattern="[6-9][0-9]{9}"
+              maxLength="10"
+              className={errors.mobile ? "error" : ""}
             />
-            {errors.phone && (
-              <span className="error-message">{errors.phone}</span>
+            {errors.mobile && (
+              <span className="error-message">{errors.mobile}</span>
             )}
           </div>
 
